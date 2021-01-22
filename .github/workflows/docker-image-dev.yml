@@ -4,7 +4,6 @@ on:
   push:
     branches:
     - master
-    - github-action
   pull_request:
     branches: [ master ]
 
@@ -25,7 +24,7 @@ jobs:
         docker build maven --file maven/Dockerfile --tag kubespheredev/builder-maven:$tag
         docker build nodejs --file nodejs/Dockerfile --tag kubespheredev/builder-nodejs:$tag
     - name: Publish Image
-      if: github.event == 'push'
+      if: github.ref == 'refs/heads/main'
       run: |
         docker push kubespheredev/builder-base:$tag
         docker push kubespheredev/builder-go:$tag
