@@ -26,6 +26,7 @@ jobs:
     - name: Publish Image
       if: github.ref == 'refs/heads/master'
       run: |
+        tag=latest
         docker push kubespheredev/builder-base:$tag
         docker push kubespheredev/builder-go:$tag
         docker push kubespheredev/builder-maven:$tag
